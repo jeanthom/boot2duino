@@ -1,0 +1,5 @@
+generic.name=Generic x86 computer
+generic.build.board=GENERIC_X86
+generic.build.core=x86-pc
+generic.build.variant=x86-pc
+generic.upload.tool=qemu

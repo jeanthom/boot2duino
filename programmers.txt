@@ -1,0 +1,6 @@
+qemu.name=QEMU
+qemu.communication=USB
+qemu.protocol=qemu
+qemu.program.protocol=qemu
+qemu.program.tool=qemu
+qemu.program.setup_command=

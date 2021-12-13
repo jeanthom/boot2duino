@@ -1,0 +1,58 @@
+name=boot2duino
+version=1.0.0
+
+compiler.path=/usr/bin/
+compiler.S.cmd=as
+compiler.S.flags=-c --32
+compiler.c.cmd=gcc
+compiler.c.flags=-c -m16 -ffreestanding -fno-PIE -nostartfiles -nostdlib -std=gnu11
+compiler.c.elf.cmd=gcc
+compiler.c.elf.flags=-m16 -ffreestanding -fno-PIE -nostartfiles -nostdlib -std=gnu11
+compiler.cpp.cmd=g++
+compiler.cpp.flags=-c -m16 -ffreestanding -fno-PIE -nostartfiles -nostdlib -std=c++11
+compiler.ar.cmd=ar
+compiler.ar.flags=rcs
+compiler.objcopy=objcopy
+compiler.elf2hex.cmd=objcopy
+compiler.elf2hex.flags=-O binary
+compiler.ld.cmd=ld
+
+compiler.libs.c.flags=
+
+build.cpu_flags=
+build.hs_flag=
+build.upload_flags=
+build.flags.optimize=
+build.flags.ldspecs=
+build.extra_flags=
+build.common_flags=
+build.ldscript=linker.ld
+
+## Compile c files
+recipe.c.o.pattern="{compiler.path}{compiler.c.cmd}" {compiler.c.flags} -DARDUINO={runtime.ide.version} -DARDUINO_{build.board} -DARDUINO_ARCH_{build.arch} {compiler.c.extra_flags} {build.extra_flags} {compiler.libs.c.flags} {includes} "{source_file}" -o "{object_file}"
+
+## Compile c++ files
+recipe.cpp.o.pattern="{compiler.path}{compiler.cpp.cmd}" {compiler.cpp.flags} -DARDUINO={runtime.ide.version} -DARDUINO_{build.board} -DARDUINO_ARCH_{build.arch} {build.extra_flags} {build.cpu_flags} {build.hs_flag} {build.common_flags} {compiler.libs.c.flags} {includes} "{source_file}" -o "{object_file}"
+
+## Compile S files
+recipe.S.o.pattern="{compiler.path}{compiler.S.cmd}" {compiler.S.flags} "{source_file}" -o "{object_file}"
+
+## Combine gc-sections, archives, and objects
+recipe.c.combine.use_shell_execute=true
+recipe.c.combine.pattern="{compiler.path}{compiler.c.elf.cmd}" {compiler.c.elf.flags} -o "{build.path}/{build.project_name}.elf" "-L{build.path}" "-L{build.path}/core" -Wl,--cref -Wl,--check-sections -Wl,--gc-sections -Wl,--unresolved-symbols=report-all -Wl,--warn-common -Wl,--warn-section-align -Wl,--warn-unresolved-symbols -Wl,--start-group "{archive_file_path}" {object_files} -Wl,--end-group "-T{build.variant.path}/{build.ldscript}"
+##recipe.c.combine.pattern=echo cc
+
+recipe.ar.pattern="{compiler.path}{compiler.ar.cmd}" {compiler.ar.flags} "{archive_file_path}" "{object_file}"
+
+## Create hex
+recipe.objcopy.hex.pattern="{compiler.path}{compiler.elf2hex.cmd}" {compiler.elf2hex.flags} "{build.path}/{build.project_name}.elf" "{build.path}/{build.project_name}.img"
+
+## Save Compiled Binary
+recipe.output.tmp_file={build.project_name}.img
+recipe.output.save_file={build.project_name}.{build.variant}.img
+
+tools.qemu.cmd=/usr/bin/qemu-system-x86_64
+tools.qemu.upload.pattern="{tools.qemu.cmd}" -drive file={build.path}/{build.project_name}.img,format=raw
+tools.qemu.program.params.quiet=
+tools.qemu.program.params.verbose=
+
