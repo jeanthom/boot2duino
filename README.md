@@ -20,9 +20,16 @@ void loop() {
 [Watch it in action!](https://vimeo.com/656339999)
 
 ## How to install
-
+Linux :
 ```
 mkdir -p ~/Arduino/hardware/boot2duino
 cd ~/Arduino/hardware/boot2duino
+git clone https://github.com/jeanthom/boot2duino
+```
+
+Windows :
+```
+mkdir %UserProfile%\Documents\Arduino\hardware
+cd %UserProfile%\Documents\Arduino\hardware
 git clone https://github.com/jeanthom/boot2duino
 ```
