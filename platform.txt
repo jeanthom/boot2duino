@@ -5,11 +5,11 @@ compiler.path=/usr/bin/
 compiler.S.cmd=as
 compiler.S.flags=-c --32
 compiler.c.cmd=gcc
-compiler.c.flags=-c -m16 -ffreestanding -fno-PIE -nostartfiles -nostdlib -std=gnu11
+compiler.c.flags=-c -m16 -ffreestanding -fno-PIE -nostartfiles -nostdlib -std=gnu11 -Os
 compiler.c.elf.cmd=gcc
 compiler.c.elf.flags=-m16 -ffreestanding -fno-PIE -nostartfiles -nostdlib -std=gnu11
 compiler.cpp.cmd=g++
-compiler.cpp.flags=-c -m16 -ffreestanding -fno-PIE -nostartfiles -nostdlib -std=c++11
+compiler.cpp.flags=-c -m16 -ffreestanding -fno-PIE -nostartfiles -nostdlib -std=c++11 -Os
 compiler.ar.cmd=ar
 compiler.ar.flags=rcs
 compiler.objcopy=objcopy
@@ -40,11 +40,10 @@ recipe.S.o.pattern="{compiler.path}{compiler.S.cmd}" {compiler.S.flags} "{source
 ## Combine gc-sections, archives, and objects
 recipe.c.combine.use_shell_execute=true
 recipe.c.combine.pattern="{compiler.path}{compiler.c.elf.cmd}" {compiler.c.elf.flags} -o "{build.path}/{build.project_name}.elf" "-L{build.path}" "-L{build.path}/core" -Wl,--cref -Wl,--check-sections -Wl,--gc-sections -Wl,--unresolved-symbols=report-all -Wl,--warn-common -Wl,--warn-section-align -Wl,--warn-unresolved-symbols -Wl,--start-group "{archive_file_path}" {object_files} -Wl,--end-group "-T{build.variant.path}/{build.ldscript}"
-##recipe.c.combine.pattern=echo cc
 
 recipe.ar.pattern="{compiler.path}{compiler.ar.cmd}" {compiler.ar.flags} "{archive_file_path}" "{object_file}"
 
-## Create hex
+## Create img
 recipe.objcopy.hex.pattern="{compiler.path}{compiler.elf2hex.cmd}" {compiler.elf2hex.flags} "{build.path}/{build.project_name}.elf" "{build.path}/{build.project_name}.img"
 
 ## Save Compiled Binary
