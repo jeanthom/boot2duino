@@ -1,7 +1,8 @@
 # boot2duino
 boot2duino serves no other purpose than to generate a bootable x86 image using the Arduino IDE. I haven't found a suitable use for it yet, so its capabilities are currently quite limited (you can basically only print text on screen).
 
-## Example
+## Examples
+
 ```c++
 Video vid;
 
@@ -14,8 +15,7 @@ void loop() {
 }
 ```
 
-![boot2duino generated image running inside QEMU](doc/hello.png)
-
+![boot2duino hello world example running inside QEMU](doc/hello.png)
 
 [Watch it in action!](https://vimeo.com/656339999)
 
@@ -52,16 +52,27 @@ void loop() {
 ![Keyboard example running inside QEMU](doc/keyboard.png)
 
 ## How to install
+
 Linux :
-```
+
+```bash
 mkdir -p ~/Arduino/hardware/boot2duino
 cd ~/Arduino/hardware/boot2duino
 git clone https://github.com/jeanthom/boot2duino
 ```
 
 Windows :
-```
+
+```batch
 mkdir %UserProfile%\Documents\Arduino\hardware
 cd %UserProfile%\Documents\Arduino\hardware
 git clone https://github.com/jeanthom/boot2duino
+```
+
+## How to run
+
+Using qemu:
+
+```bash
+qemu-system-x86_64 -drive file=boot2duino-demo.ino.x86-pc.img,index=0,if=floppy,format=raw
 ```
