@@ -14,7 +14,7 @@ void loop() {
 }
 ```
 
-![boot2duino generated image running inside QEMU](doc/demo.png)
+![boot2duino generated image running inside QEMU](doc/hello.png)
 
 
 [Watch it in action!](https://vimeo.com/656339999)
