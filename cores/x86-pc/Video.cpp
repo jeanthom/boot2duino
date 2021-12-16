@@ -14,8 +14,8 @@ void Video::print(const char *str) const {
 	}
 }
 
-void Video::clear() const {
-	videoasm_clear();
+void Video::clear(VideoColorScheme scheme) const {
+	videoasm_clear(scheme);
 }
 
 void Video::setCursorPosition(char x, char y) const {

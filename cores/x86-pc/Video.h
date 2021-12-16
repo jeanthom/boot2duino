@@ -10,11 +10,17 @@ enum VideoMode {
 	GRAPHIC_640X200_COLOR = 0x06,
 };
 
+enum VideoColorScheme : unsigned char {
+	SCHEME_DEFAULT = 0x07,
+	SCHEME_HYPERVISOR = 0xE8,
+	SCHEME_UGLYBIOS = 0xE1,
+};
+
 class Video {
 public:
 	void print(const char *str) const;
 	void print(char c) const;
-	void clear() const;
+	void clear(VideoColorScheme scheme = SCHEME_DEFAULT) const;
 	void setCursorPosition(char x, char y) const;
 	void setMode(VideoMode mode) const;
 };

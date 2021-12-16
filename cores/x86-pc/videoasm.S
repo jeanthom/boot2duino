@@ -13,16 +13,18 @@ videoasm_putchar:
 
 .global videoasm_clear
 videoasm_clear:
-	pusha
+	push %bx
+	push %dx
 	mov $0x06, %ah # "Scroll up window"
 	mov $0x00, %al # Clear
-	mov $0x0F, %bh # Background/foreground color
+	mov %cl, %bh # Color scheme
 	mov $0x00, %ch # Upper row number
 	mov $0x00, %cl # Left column number
 	mov $24, %dh
 	mov $79, %dl
 	int $0x10
-	popa
+	pop %dx
+	pop %bx
 	ret
 
 .global videoasm_set_cursor_position
