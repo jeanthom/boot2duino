@@ -3,5 +3,6 @@
 
 #include "Video.h"
 #include "Keyboard.h"
+#include "Tone.h"
 
 #endif // Arduino_h
