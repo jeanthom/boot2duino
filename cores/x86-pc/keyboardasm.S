@@ -12,11 +12,11 @@ keyboardasm_getch:
 	mov $0x00, %ah
 	int $0x16
 	xor %ah, %ah
-	retw
+	ret
 
 .global keyboardasm_getkeycode
 keyboardasm_getkeycode:
 	mov $0x00, %ah
 	int $0x16
 	mov %ah, %al
-	retw
+	ret
