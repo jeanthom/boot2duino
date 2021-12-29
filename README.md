@@ -1,7 +1,7 @@
 # boot2duino
 boot2duino serves no other purpose than to generate a bootable x86 image using the Arduino IDE. I haven't found a suitable use for it yet, so its capabilities are currently quite limited (you can basically only print text on screen).
 
-[Watch it in action!](https://vimeo.com/656339999)
+**Watch it in action:** [writing a hello world](https://vimeo.com/656339999), [a very basic piano](https://vimeo.com/661030335).
 
 ## Examples
 
@@ -47,5 +47,5 @@ git clone https://github.com/jeanthom/boot2duino
 Using qemu:
 
 ```bash
-qemu-system-x86_64 -drive file=boot2duino-demo.ino.x86-pc.img,index=0,if=floppy,format=raw
+qemu-system-x86_64 -drive file=boot2duino-demo.ino.x86-pc.img,index=0,if=floppy,format=raw -soundhw pcspk
 ```
