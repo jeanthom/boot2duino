@@ -14,6 +14,11 @@ void Video::print(const char *str) const {
 	}
 }
 
+void Video::println(const char *str) const {
+	print(str);
+	print("\r\n");
+}
+
 void Video::clear(VideoColorScheme scheme) const {
 	videoasm_clear(scheme);
 }

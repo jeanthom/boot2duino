@@ -1,6 +1,6 @@
 #pragma once
 
-enum VideoMode {
+enum VideoMode : unsigned char {
 	TEXT_40X25_BW = 0x00,
 	TEXT_40X25_COLOR = 0x01,
 	TEXT_80X25_BW = 0x02,
@@ -19,6 +19,7 @@ enum VideoColorScheme : unsigned char {
 class Video {
 public:
 	void print(const char *str) const;
+	void println(const char *str) const;
 	void print(char c) const;
 	void clear(VideoColorScheme scheme = SCHEME_DEFAULT) const;
 	void setCursorPosition(char x, char y) const;

@@ -29,11 +29,9 @@ videoasm_clear:
 
 .global videoasm_set_cursor_position
 videoasm_set_cursor_position:
-	push %bp
 	push %ax
 	push %bx
 	push %dx
-	mov %sp, %bp
 	mov %al, %dh
 	mov $0x0200, %ax # Set cursor position
 	mov $0x00, %bh # Page number
@@ -41,7 +39,6 @@ videoasm_set_cursor_position:
 	pop %dx
 	pop %bx
 	pop %ax
-	pop %bp
 	ret
 
 .global videoasm_set_video_mode
