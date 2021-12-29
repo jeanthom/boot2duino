@@ -1,7 +1,8 @@
 # boot2duino
-boot2duino serves no other purpose than to generate a bootable x86 image using the Arduino IDE. I haven't found a suitable use for it yet, so its capabilities are currently quite limited (you can basically only print text on screen).
 
-**Watch it in action:** [writing a hello world](https://vimeo.com/656339999), [a very basic piano](https://vimeo.com/661030335).
+boot2duino serves no other purpose than to generate a bootable x86 floppy image using the Arduino IDE, which seemingly serves no purpose.
+
+**Watch it in action:** [writing a hello world](https://vimeo.com/656339999); [a very basic piano](https://vimeo.com/661030335).
 
 ## Examples
 
