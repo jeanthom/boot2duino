@@ -50,3 +50,10 @@ Using qemu:
 ```bash
 qemu-system-x86_64 -drive file=boot2duino-demo.ino.x86-pc.img,index=0,if=floppy,format=raw -soundhw pcspk
 ```
+
+## Troubleshooting
+
+1. Install an x86 compiler
+2. Try upgrading your Arduino IDE
+3. Windows is not very well supported, give Linux a try
+4. Upgrade GCC to 11 ([see this issue](https://github.com/jeanthom/boot2duino/issues/6))
